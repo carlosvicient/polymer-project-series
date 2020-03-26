@@ -21,7 +21,7 @@ The modifications made in this project are as follows:
     }
     ````
 
-    1. Add new `h2`and `<input>``
+    1. Add new `h2` and `<input>`
 
     ````html
     <h2 class="[[prop1]]">common native element properties that need attribute bindings for dynamic values </h2>

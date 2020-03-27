@@ -19,6 +19,10 @@ class Lecture2Element extends PolymerElement {
           padding: 1em;
         }
 
+        :host(:hover) {
+          background-color: lightslategray;
+        }
+
         .red {
           color: red;
         }

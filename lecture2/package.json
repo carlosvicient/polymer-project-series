@@ -2,6 +2,7 @@
   "name": "lecture2-element",
   "main": "lecture2-element.js",
   "dependencies": {
+    "@polymer/paper-input": "^3.2.1",
     "@polymer/polymer": "^3.0.0"
   },
   "devDependencies": {

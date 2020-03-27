@@ -1,4 +1,5 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-input/paper-input.js';
 
 /**
  * `lecture2-element`
@@ -20,7 +21,7 @@ class Lecture2Element extends PolymerElement {
         }
 
         :host(:hover) {
-          background-color: lightslategray;
+          background-color: rgb(255, 239, 239);
         }
 
         .red {
@@ -31,13 +32,19 @@ class Lecture2Element extends PolymerElement {
           color: green;
         }
       </style>
+
       <h2>Hello [[prop1]]!. This form is config to use 1-way data binding</h2>
       <input type="text" name="oneWay" value="[[prop1]]">
+
       <h2>And this one 2-way data binding</h2>
       <input type="text" name="twoWay" value="{{prop1::input}}">
+
       <h2 class$="[[prop1]]">common native element properties that need attribute bindings for dynamic values </h2>
       <p>write red or green in the next field</p>
       <input type="text" name="attrs" value="{{prop1::input}}">
+
+      <h2>Yet another "input" using paper-input web component</h2>
+      <paper-input label="green or red..." value="{{prop1}}"></paper-input>
 `;
   }
   static get properties() {

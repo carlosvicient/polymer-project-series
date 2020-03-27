@@ -50,9 +50,22 @@ The modifications made in this project are as follows:
     1. Add a css rule to change the background of the host element when hovered
 
         ````CSS
-        
+        :host(:hover) {
+          background-color: rgb(255, 239, 239);
+        }
         `````
 
+1. Installing and using 3rd party components
+
+    1. Go to [https://www.webcomponents.org/](https://www.webcomponents.org/) and search custom elements
+
+    1. We will install [paper-input](https://www.webcomponents.org/element/@polymer/paper-input). A component to use material design input form controls 
+
+    1. `npm install --save @polymer/paper-input`
+
+    1. Import the component where we want to use it: `import '@polymer/paper-input/paper-input.js';`
+
+    1. Use it in the HTML template: `<paper-input label="green or red..." value="{{prop1}}"></paper-input>` (notice we don't need the `:input` event since this is already a polymer component).
 
 
 ## Install the Polymer-CLI

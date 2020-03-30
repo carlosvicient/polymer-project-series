@@ -43,7 +43,13 @@ class Lecture3App extends PolymerElement {
       Hello [[prop1]]!
       <button on-click="doClick">+1 click (total: [[nClicks]])</button>
     </h2>
-    <my-user></my-user>
+    <template is="dom-repeat" items="[[users]]">
+      <my-user 
+        name=[[item.name]] 
+        last-name="[[item.lastName]]"
+        birthday="[[item.birthday]]"
+      ></my-user>
+    </template>
     <slot></slot>
     `;
   }
@@ -70,6 +76,27 @@ class Lecture3App extends PolymerElement {
   handleResponse(response){
     console.log("HandleResponse is: ", response);
     console.log(response.detail.response);
+    this.users = response.detail.response;
+
+    //After 5 seconds delete the first element of the list
+    setTimeout(()=>{
+      console.log('timer');
+      //wrong
+      // console.log('Before removing: ', this.users.length);
+      // this.users.pop();
+      // console.log('After removing: ', this.users.length);
+      //end wrong
+      
+      //right (remove the first element)
+      this.splice('users', 0, 1);
+    }, 5000);
+
+  }
+
+  constructor() {
+    super();
+    //We need to watch this variable "somehow" if we want to re-render the view based on this.
+    this.users = [];
   }
 }
 

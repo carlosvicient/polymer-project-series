@@ -153,31 +153,86 @@ After creating the application, these are the changes made in the code.
         <my-user></my-user>
         `````
 
+#Bonus
 
+Let's see how to:
 
+- Perform Ajax requests
 
+- Repeat a template (dom-repeat)
 
+- Work with arrays (observe array mutations)
 
+1. Install [iron-ajax](https://www.webcomponents.org/element/@polymer/iron-ajax) 
 
+    1. `npm install --save @polymer/iron-ajax`
+
+    1. Import the component: `import '@polymer/iron-ajax/iron-ajax.js';`
+
+    1. Use it in the HTML template
+
+        ````html
+        <iron-ajax
+            auto
+            url="https://my-json-server.typicode.com/carlosvicient/fake-api/users"
+            handle-as="json"
+            on-response="handleResponse"
+            debounce-duration="300">
+        </iron-ajax>
+        ````
+
+        Notice the `url` points to a fake webservice that returns 5 users. the `on-response` contains the function which will be executed when the promise is resolved
+
+    1. Create the `handleResponse` method
+
+        ````javascript
+        handleResponse(response){
+            console.log("HandleResponse is: ", response);
+            console.log(response.detail.response);
+            this.users = response.detail.response;
+        }
+        ````
+
+1. Use a dynamic template (`dom-repeat`)
+
+    ````html
+    <template is="dom-repeat" items="[[users]]">
+      <my-user 
+        name=[[item.name]] 
+        last-name="[[item.lastName]]"
+        birthday="[[item.birthday]]"
+      ></my-user>
+    </template>
+    ````
+
+1. If you need to "mutate" the `users` array, you will need to observe or tell polymer how to (or when) the view should be re-rendered
+
+    >If you manipulate an array using the native methods (like Array.prototype.push), you can notify Polymer after the fact, as described in Batch changes to an object or array.
     
+    [Work with arrays](https://polymer-library.polymer-project.org/3.0/docs/devguide/model-data#work-with-arrays)
 
-    
+    Try this (comment and uncomment to see the differences):
 
+    `````javascript
+    handleResponse(response){
+        console.log("HandleResponse is: ", response);
+        console.log(response.detail.response);
+        this.users = response.detail.response;
 
-
-
-
-
-
-
-
-
-
-https://my-json-server.typicode.com/carlosvicient/fake-api/users
-
-
-
-
+        //After 5 seconds delete the first element of the list
+        setTimeout(()=>{
+        console.log('timer');
+        //wrong
+        // console.log('Before removing: ', this.users.length);
+        // this.users.pop();
+        // console.log('After removing: ', this.users.length);
+        //end wrong
+        
+        //right (remove the first element)
+        this.splice('users', 0, 1);
+        }, 5000);
+    }
+    `````
 
 
 ## Install the Polymer-CLI

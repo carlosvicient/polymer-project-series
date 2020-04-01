@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redux example | polymer series</title>
+
+    <script>
+        // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
+        // the module is loaded.
+        window.process = {
+            env: {
+                NODE_ENV: 'production'
+            }
+        };
+    </script>
+
+    <!-- load webcomponents bundle, which includes all the necessary polyfills -->
+    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+
+    <script type="module" src="components/app-container.js"></script>
+    <script type="module" src="components/click-visualiser.js"></script>
+    <!-- Testing -->
+    <!-- <script type="module" src="libraries/redux/dispatching.test.js"></script> -->
+
+</head>
+
+<body>
+    <h1>Hello, Redux app!</h1>
+
+    <app-container></app-container>
+    <click-visualiser></click-visualiser>
+</body>
+
+</html>

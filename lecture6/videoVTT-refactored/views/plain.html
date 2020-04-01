@@ -12,6 +12,8 @@
     <track kind="subtitles" label="English subtitles" src="../assets/developerStories-subtitles-en.vtt" srclang="en" default></track>
   </video>
  
+  <!-- This code is used to create a global variable with all the cues extracted from the .vtt file that containts the subtitles -->
+  <!-- Feel free to comment the following script and you'll see everything works as expected. -->
   <script>
     const track = document.querySelector('video track');    // The html track element
     const cues = [];

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script type="module" src="../core-components/texted-video.js"></script>
+  <title>Play video - WebComponents</title>
+  <style>
+    body>div {
+      width: 900px;
+      height: 90vh;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <texted-video videofile="../assets/developerStories-en.mp4" videotype="video/mp4"></video-viewer>
+  </div>
+  <script>
+    const video = document.querySelector('texted-video');
+
+    timer(6).then(()=>{                                      // Wait 6 seconds
+      video.setAttribute("vttfile", "../assets/developerStories-subtitles-en.vtt");
+    });
+
+    /**
+     * Create a promise that will resolve after the given time.
+     *
+     * @param  Number sec how long (in seconds) to wait before resolving the promise
+     * @return Promise will be resolved when the desired time has passed
+     */
+    function timer(sec) {
+      return new Promise((resolve, reject)=>{
+        window.setTimeout(resolve, sec*1000);  // Resolve when time has passed
+      });
+    }
+  </script>
+</body>
+</html>

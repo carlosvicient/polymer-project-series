@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Video med undertekster</title>
+</head>
+<body>
+  <video controls>
+    <source src="../assets/developerStories-en.mp4" type="video/mp4">
+    <track kind="subtitles" label="English subtitles" src="../assets/developerStories-subtitles-en.vtt" srclang="en" default></track>
+  </video>
+ 
+  <script>
+    const track = document.querySelector('video track');    // The html track element
+    const cues = [];
+
+    track.addEventListener('load',e=>{                       // When the text track has been loaded we can access the cues
+      console.log (e, 'Text track loaded');                  // Show the event
+      const trackCues = e.path[0].track.cues;
+      for (let i=0; i<trackCues.length; i++) {               // Go through the cue list
+        cues.push(trackCues[i]);                             // Add all cues to an array
+      };
+      showSubtitles();                                       // Show all cues alongside the video
+    });
+
+    function showSubtitles() {
+      console.log(cues);
+    }
+  </script>
+</body>
+</html>
